@@ -1,0 +1,7 @@
+*.txt
+*.npz
+*.pickle
+tfidf_trialtopmid.py
+__init__.py
+.idea/*
+*.pyc
