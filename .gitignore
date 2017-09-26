@@ -1,4 +1,5 @@
 *.txt
+!requirements.txt
 *.npz
 *.pickle
 tfidf_trialtopmid.py

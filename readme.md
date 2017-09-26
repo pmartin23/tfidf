@@ -1,6 +1,6 @@
 # Document similarity measures using tfidf & cosine similarity
 
-This script will rank candidate PubMed articles according to the cosine similarity to a nominated ClinicalTrials.gov.
+This module facilitates the ranking of candidate PubMed articles according to the cosine similarity to a nominated ClinicalTrials.gov.
 
 ## Getting Started
 
@@ -29,7 +29,7 @@ Note for Microsoft Windows users: replace the virtual environment activation com
 
 ## Example
 
-First, generate and save the tfidf matrix and vectorizer model for the corups of candidate PubMed articles. In this example,
+First, you'll need to generate and save the tfidf matrix and vectorizer model for the corups of candidate PubMed articles. In this example,
  our features are the terms in the title and abstract of each PubMed article. It may take a while to retrieve all article 
  title & abstract metadata and construct the matrix. If you 
 ```python
@@ -43,7 +43,8 @@ gen_tfidf_matrix(candidate_docs, vectorizer_fname, matrix_fname)
 
 ```
 
-Next, we will nominate a registry entry, and call the ```docsim ``` method, which will:
+Next, we will call the ```docsim ``` method, passing it a nominated registry entry, along with the previously generated tfidf matrix and vectorizer model.
+ ```docsim``` will:
 * Calculate the tfidf of the registry entry with respect to the features in the corpus of candidate PubMed articles. 
 In this example, our features were all terms within the fields 'brief title', 'official title', 'brief summary', 'detailed description', 
 and 'condition' of the registry entry metadata.
@@ -59,26 +60,15 @@ tfidf_matrix = scipy.sparse.load_npz(matrix_fname + '.npz')
 ranks = docsim(nct_doc, tfidf_vectorizer, tfidf_matrix)
 ranked_pmids = candidate_ids[ranks]
 ```
-We can then see the resulting ranks 
+We can then see the resulting ranked PubMed articles
 
 ```python
 print ranked_pmids
 ... ['22512265' '19515181' '24601174']
 ```
 
-## Built With
+noting that article with PMID ```22512265``` is most similar to our registry entry with NCT ID ```NCT03132233```
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
