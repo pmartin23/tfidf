@@ -30,24 +30,30 @@ Note for Microsoft Windows users: replace the virtual environment activation com
 
 ## Example
 
-Below is an example usage of the script that will output the ids of candidate PubMed articles in ranked order according to their similarity to the specified ClinicalTrials.gov registry entry
-
+First, generate and save the tfidf matrix and vectorizer model for the corups of candidate PubMed documents. It may take a while to retrieve
+all article title & abstract metadata and construct the matrix.
 ```
 from tfidf import ctgov_text, pubmed_text, gen_tfidf_matrix, docsim
 
 matrix_fname = 'pubmed_tfidf'
 vectorizer_fname = 'pmid_vec'
-nct_id = 'NCT03132233'
 candidate_ids = np.array(['24601174', '19515181', '22512265'])
-
-nct_doc = ctgov_text(nct_id)  # retrieve trial registry text
-candidate_docs = [pubmed_text(pmid) for pmid in candidate_ids]  # retrieve text for candidate pubmed articles
 gen_tfidf_matrix(candidate_docs, vectorizer_fname,
-                 matrix_fname)  # generate tfidf matrix for candidate pubmed articles
+                 matrix_fname)
+
+```
+
+Next, retrieve the metadata for your registry entry of choice, load the previously generated matrix and vectorizer model, and 
+call the ```docsim``` method, which will calculate the tfidf of the registry entry document with respect to the corpus of
+candidate PubMed documents, and then rank each PubMed document according to its similarity with the registry entry document.
+The similarity is determined by calculating the cosine similarity between the vector representing the tfidf of each candidate document,
+and the vector representing the tfidf of the registry entry document.
+```
+nct_id = 'NCT03132233'
+nct_doc = ctgov_text(nct_id)
 tfidf_vectorizer = pickle.load(open(vectorizer_fname + ".pickle"))  # load tfidf vectorizer
 tfidf_matrix = scipy.sparse.load_npz(matrix_fname + '.npz')  # load tfidf matrix
-ranks = docsim(nct_doc, tfidf_vectorizer, tfidf_matrix)  # calculate the rank of each candidate document
-print candidate_ids[ranks]
+ranks = docsim(nct_doc, tfidf_vectorizer, tfidf_matrix)
 ```
 
 ## Built With
