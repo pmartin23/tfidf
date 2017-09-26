@@ -1,6 +1,7 @@
 # Document similarity measures using tfidf & cosine similarity
 
-This module facilitates the ranking of candidate PubMed articles according to the cosine similarity to a nominated ClinicalTrials.gov.
+This module facilitates the ranking of candidate [PubMed] (https://www.ncbi.nlm.nih.gov/pubmed/) articles according to the cosine similarity to a nominated [ClinicalTrials.gov](https://clinicaltrials.gov/)
+registry entry
 
 ## Getting Started
 
@@ -16,7 +17,8 @@ To install and run this example, you will need:
 
 ### Installing
 
-Run the comamnds below to set everything up such that you will be able to run the script with your own input
+Run the commands below to set everything up such that you will be able to run the script with your own list of PubMed articles
+and trial registry entries
 
 ```
 $ git clone https://git.aihi.mq.edu.au/paige_newman/tfidf_bot.git tfidf_bot
@@ -31,7 +33,9 @@ Note for Microsoft Windows users: replace the virtual environment activation com
 
 First, you'll need to generate and save the tfidf matrix and vectorizer model for the corups of candidate PubMed articles. In this example,
  our features are the terms in the title and abstract of each PubMed article. It may take a while to retrieve all article 
- title & abstract metadata and construct the matrix. If you 
+ title & abstract metadata and construct the matrix. If you are planning to calculate the similarity between multiple trial
+ registry entries over the same corpus of PubMed articles, you can run this just once to generate and save the matrix, and reuse
+ the matrix each time you calculate the cosine similarities for a new trial registry entry.
 ```python
 from tfidf import gen_tfidf_matrix, docsim
 
@@ -72,9 +76,8 @@ noting that article with PMID ```22512265``` is most similar to our registry ent
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Adam Dunn** 
+* **Paige Martin**
 
 ## License
 
@@ -85,3 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
+
+## Publications
+
+\[1\] Paper reference here
