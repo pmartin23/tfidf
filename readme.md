@@ -1,6 +1,6 @@
 # Document similarity measures using tfidf & cosine similarity
 
-This module facilitates the ranking of candidate [PubMed] (https://www.ncbi.nlm.nih.gov/pubmed/) articles according to the cosine similarity to a nominated [ClinicalTrials.gov](https://clinicaltrials.gov/)
+This module facilitates the ranking of candidate [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/) articles according to the cosine similarity to a nominated [ClinicalTrials.gov](https://clinicaltrials.gov/)
 registry entry
 
 ## Getting Started
@@ -31,11 +31,14 @@ Note for Microsoft Windows users: replace the virtual environment activation com
 
 ## Example
 
+The full code for this example can be found in ```example.py```
+### Generating the tfidf matrix
+
 First, you'll need to generate and save the tfidf matrix and vectorizer model for the corups of candidate PubMed articles. In this example,
  our features are the terms in the title and abstract of each PubMed article. It may take a while to retrieve all article 
- title & abstract metadata and construct the matrix. If you are planning to calculate the similarity between multiple trial
- registry entries over the same corpus of PubMed articles, you can run this just once to generate and save the matrix, and reuse
- the matrix each time you calculate the cosine similarities for a new trial registry entry.
+ title & abstract metadata and construct the matrix.
+
+ **Note:** because we save the tfidf matrix and vectorizer to file, we only need to generate these **once** for each set of candidate PubMed articles
 ```python
 from tfidf import gen_tfidf_matrix, docsim
 
@@ -44,11 +47,12 @@ vectorizer_fname = 'pmid_vec'
 candidate_ids = np.array(['24601174', '19515181', '22512265'])
 candidate_docs = [pubmed_text(pmid) for pmid in candidate_ids]  # retrieve text for candidate pubmed articles
 gen_tfidf_matrix(candidate_docs, vectorizer_fname, matrix_fname)
-
 ```
 
-Next, we will call the ```docsim ``` method, passing it a nominated registry entry, along with the previously generated tfidf matrix and vectorizer model.
- ```docsim``` will:
+### Calculating document similarity & ranks
+Next, we will calculate the document similarity between each PubMed article and our nominated trial registry entry, using the previously
+generated tfidf matrix and vectorizer model. There are two steps in this process, which are implemented in the ```docsim``` method in ```tfidf.py```:
+
 * Calculate the tfidf of the registry entry with respect to the features in the corpus of candidate PubMed articles. 
 In this example, our features were all terms within the fields 'brief title', 'official title', 'brief summary', 'detailed description', 
 and 'condition' of the registry entry metadata.
