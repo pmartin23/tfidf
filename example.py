@@ -83,17 +83,16 @@ def ctgov_text(nct_id):
 
 
 if __name__ == "__main__":
+
     matrix_fname = 'pubmed_tfidf_example'
     vectorizer_fname = 'pubmed_vec_example'
     candidate_ids = np.array(['24601174', '19515181', '22512265'])
-
     candidate_docs = [pubmed_text(pmid) for pmid in candidate_ids]  # retrieve text for candidate pubmed articles
-    gen_tfidf_matrix(candidate_docs, vectorizer_fname,
-                     matrix_fname)  # generate tfidf matrix for candidate pubmed articles
+    gen_tfidf_matrix(candidate_docs, vectorizer_fname, matrix_fname)  # generate tfidf matrix for candidate pubmed articles
+
 
     nct_id = 'NCT03132233'
     nct_doc = ctgov_text(nct_id)  # retrieve trial registry text
-
     tfidf_vectorizer = pickle.load(open(vectorizer_fname + ".pickle"))  # load tfidf vectorizer
     tfidf_matrix = scipy.sparse.load_npz(matrix_fname + '.npz')  # load tfidf matrix
     ranks = docsim(nct_doc, tfidf_vectorizer, tfidf_matrix)  # calculate the rank of each candidate document

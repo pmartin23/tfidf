@@ -1,6 +1,6 @@
 # Document similarity measures using tfidf & cosine similarity
 
-This module facilitates the ranking of candidate [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/) articles according to the cosine similarity to a nominated [ClinicalTrials.gov](https://clinicaltrials.gov/)
+This module facilitates the ranking of candidate [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/) articles according to their cosine similarity to a nominated [ClinicalTrials.gov](https://clinicaltrials.gov/)
 registry entry
 
 ## Getting Started
@@ -29,6 +29,12 @@ $ tfidf_bot/bin/activate
 ```
 Note for Microsoft Windows users: replace the virtual environment activation command above with ```tfidf_bot\Scripts\activate```
 
+
+Once everything is installed, you can run the example with the following command:
+```
+(tfidf_bot) python -u example.py
+```
+
 ## Example
 
 The full code for this example can be found in ```example.py```
@@ -52,6 +58,9 @@ gen_tfidf_matrix(candidate_docs, vectorizer_fname, matrix_fname)
 ### Calculating document similarity & ranks
 Next, we will calculate the document similarity between each PubMed article and our nominated trial registry entry, using the previously
 generated tfidf matrix and vectorizer model. There are two steps in this process, which are implemented in the ```docsim``` method in ```tfidf.py```:
+```python
+docsim(document, tfidf_vectorizer, tfidf_matrix)
+```
 
 * Calculate the tfidf of the registry entry with respect to the features in the corpus of candidate PubMed articles. 
 In this example, our features were all terms within the fields 'brief title', 'official title', 'brief summary', 'detailed description', 
