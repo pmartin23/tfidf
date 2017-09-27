@@ -96,12 +96,8 @@ noting that article with PMID ```22512265``` is most similar to our registry ent
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
 ## Publications
 
-\[1\] Paper reference here
+\[1\] *Document similarity measures can support semi-automated identification of unreported links
+between trial registrations and published reports.*  Adam G. Dunn, Enrico Coiera, Florence T. Bourgeois.
+[*Submitted to the Journal of Clinical Epidemiology, 2017*] ArXiv version: https://arxiv.org/pdf/1709.02116.pdf
