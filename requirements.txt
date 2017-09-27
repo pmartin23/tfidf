@@ -1,5 +1,5 @@
 scikit-learn==0.19b2
 scipy==0.19.1
-numpy==1.13.1+mkl
+numpy==1.13.1
 requests==2.18.1
 untangle==1.1.0
