@@ -24,8 +24,8 @@ and trial registry entries
 $ git clone https://github.com/pmartin23/tfidf tfidf
 $ virtualenv tfidf
 $ tfidf/bin/activate
-(tfidf_bot) cd tfidf
-(tfidf_bot) pip install -r requirements.txt
+(tfidf) cd tfidf
+(tfidf) pip install -r requirements.txt
 ```
 Note for Microsoft Windows users: replace the virtual environment activation command above with ```tfidf\Scripts\activate```
 
