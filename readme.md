@@ -27,7 +27,7 @@ $ tfidf/bin/activate
 (tfidf_bot) cd tfidf
 (tfidf_bot) pip install -r requirements.txt
 ```
-Note for Microsoft Windows users: replace the virtual environment activation command above with ```tfidf_bot\Scripts\activate```
+Note for Microsoft Windows users: replace the virtual environment activation command above with ```tfidf\Scripts\activate```
 
 
 Once everything is installed, you can run the example with the following command:
