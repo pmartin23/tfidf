@@ -21,10 +21,10 @@ Run the commands below to set everything up such that you will be able to run th
 and trial registry entries
 
 ```
-$ git clone https://git.aihi.mq.edu.au/paige_newman/tfidf_bot.git tfidf_bot
-$ virtualenv tfidf_bot
+$ git clone https://github.com/pmartin23/tfidf tfidf
+$ virtualenv tfidf
 $ tfidf_bot/bin/activate
-(tfidf_bot) cd tfidf_bot
+(tfidf_bot) cd tfidf
 (tfidf_bot) pip install -r requirements.txt
 ```
 Note for Microsoft Windows users: replace the virtual environment activation command above with ```tfidf_bot\Scripts\activate```
