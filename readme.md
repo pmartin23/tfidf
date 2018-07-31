@@ -23,7 +23,7 @@ and trial registry entries
 ```
 $ git clone https://github.com/pmartin23/tfidf tfidf
 $ virtualenv tfidf
-$ tfidf_bot/bin/activate
+$ tfidf/bin/activate
 (tfidf_bot) cd tfidf
 (tfidf_bot) pip install -r requirements.txt
 ```
@@ -32,7 +32,7 @@ Note for Microsoft Windows users: replace the virtual environment activation com
 
 Once everything is installed, you can run the example with the following command:
 ```
-(tfidf_bot) python -u example.py
+(tfidf) python -u example.py
 ```
 
 ## Example
